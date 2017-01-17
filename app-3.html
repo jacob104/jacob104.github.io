@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Another web application created from a spreadsheet with Appizy">
+    <meta name="author" content="Appizy">
+    <title>
+      Appizy
+    </title>
+    <style type="text/css">
+    /* Normalize */
+
+    /* Appizy default CSS */
+    #appizy {
+    display: inline-block;
+    }
+
+    #appizy table {
+    table-layout: fixed;
+    border: none;
+    border-collapse: collapse;
+    }
+
+    #appizy tbody {
+    border: none;
+    }
+
+    #appizy td, #appizy th {
+    overflow: hidden;
+    }
+
+    #appizy tr {
+    font-size: 10pt;
+    font-family: Arial;
+    min-height: 10px;
+    }
+
+    #appizy td {
+    padding: 2px;
+    line-height: normal;
+    }
+
+    #appizy input {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #C2C2C2;
+    border-radius: 2px;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    padding-right: 1%;
+    text-align: inherit;
+    margin: 1%;
+    width: 97%;
+    }
+
+    #appizy input:disabled {
+    border: none !important;
+    color: inherit;
+    -webkit-opacity: 1;
+    -webkit-text-fill-color: inherit;
+    }
+
+    #appizy select {
+    width: 100%;
+    text-align: inherit;
+    }
+
+    #appizy p {
+    margin: 0 0 0.1em 0;
+    }
+
+    .in {
+    text-align: right;
+    }
+
+    .out {
+    text-align: right;
+    padding: 5px;
+    }
+
+    .hidden-cell {
+    display: none;
+    }
+
+    .hidden-row {
+    display: none;
+    }
+        .co1 { 
+    width:320.26pt;
+    }
+    .co2 { 
+    width:90pt;
+    }
+    .co3 { 
+    width:139.49pt;
+    }
+    .ro1 { 
+    height:18pt;
+    }
+    .ce1 { 
+    color:#ffffff;
+    font-family:Cambria;
+    background-color:#3c78d8;
+    text-align:center;
+    font-size:18pt;
+    font-style:normal;
+    font-weight:bold;
+    }
+    .ce2 { 
+    color:#000000;
+    font-family:Cambria;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:normal;
+    }
+    .ce3 { 
+    color:#000000;
+    font-family:Cambria;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:bold;
+    }
+    .ce4 { 
+    color:#ffffff;
+    font-family:Cambria;
+    background-color:#3c78d8;
+    text-align:center;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:bold;
+    }
+    .ce5 { 
+    color:#000000;
+    font-family:Arial;
+    text-align:start;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:bold;
+    }
+    .ce6 { 
+    color:#000000;
+    font-family:Cambria;
+    text-align:start;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:bold;
+    }
+    .ce7 { 
+    color:#000000;
+    font-family:Cambria;
+    background-color:#ffff00;
+    text-align:center;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:bold;
+    }
+    .ce8 { 
+    color:#000000;
+    font-family:Cambria;
+    text-align:center;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:normal;
+    }
+    .ce9 { 
+    color:#000000;
+    font-family:Cambria;
+    background-color:#3c78d8;
+    text-align:center;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:normal;
+    }
+    .ce10 { 
+    color:#000000;
+    font-family:Cambria;
+    font-size:18pt;
+    font-style:normal;
+    font-weight:bold;
+    }
+    .ce11 { 
+    color:#000000;
+    font-family:Cambria;
+    background-color:#3c78d8;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:normal;
+    }
+    .ce12 { 
+    color:#000000;
+    font-family:Cambria;
+    font-size:18pt;
+    font-style:normal;
+    font-weight:normal;
+    }
+    .ce13 { 
+    color:#000000;
+    font-family:Cambria;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:normal;
+    }
+    .ce14 { 
+    color:#000000;
+    font-family:Cambria;
+    background-color:#3c78d8;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:normal;
+    }
+    .ce15 { 
+    color:#000000;
+    font-family:Cambria;
+    font-size:11pt;
+    font-style:normal;
+    font-weight:normal;
+    }
+    .t1 { 
+    font-family:Cambria;
+    font-size:11pt;
+    font-weight:bold;
+    font-style:normal;
+    }
+
+    </style>
+    <style type="text/css">
+.tabs-list {
+        height: 30px;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tabs-list li {
+        height: 30px;
+        line-height: 30px;
+        list-style: none;
+        float: left;
+        background-color: #ccc;
+        border-top: 1px solid #d4d4d1;
+        border-right: 1px solid #d4d4d1;
+        border-left: 1px solid #d4d4d1;
+        margin-right: 5px;
+    }
+
+    .tabs-list li.active {
+        position: relative;
+        background-color: #fff;
+        border-bottom: 1px solid #fff;
+        z-index: 5;
+    }
+
+    .tabs-list li a {
+        padding: 10px;
+        color: #595959;
+        text-decoration: none;
+    }
+
+    .tabs-list .active a {
+        color: #000;
+    }
+
+    .tabs {
+        border: 1px solid #d4d4d1;
+        background-color: #fff;
+        margin-bottom: 20px;
+    }
+
+    .tab-content {
+        padding: 10px;
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    </style>
+  </head>
+  <body>
+    <div id="appizy">
+      <form>
+        <div>
+          <ul class="tabs-list">
+            <li class="active">
+              <a href="#sheet1">Sheet1</a>
+            </li>
+          </ul>
+        </div>
+        <div class="tabs">
+          <div id="sheet1" class="tab-content active">
+            <table>
+              <tr class="s0r0 ro1">
+                <td class="s0r0c0 text ce1">
+                  <p>
+                    APPFOLIO PRICING
+                  </p>
+                </td>
+                <td class="s0r0c1 text ce4">
+                  <p>
+                    UNITS
+                  </p>
+                </td>
+                <td class="s0r0c2 text ce4">
+                  <p>
+                    PRICE
+                  </p>
+                </td>
+              </tr>
+              <tr class="s0r1 ro1">
+                <td class="s0r1c0 text ce2">
+                  <p>
+                    <span class="t1">Residential</span> (1.25 / unit / month)
+                  </p>
+                </td>
+                <td class="s0r1c1 in ce7">
+                  <input id="s0r1c1" name="s0r1c1" data-value-type="float" value="0">
+                </td>
+                <td class="s0r1c2 out ce13">
+                  <input disabled="disabled" name="s0r1c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r2 ro1">
+                <td class="s0r2c0 text ce2">
+                  <p>
+                    <span class="t1">Commercial</span> 1.50 / unit / month)
+                  </p>
+                </td>
+                <td class="s0r2c1 in ce7">
+                  <input id="s0r2c1" name="s0r2c1" data-value-type="float" value="0">
+                </td>
+                <td class="s0r2c2 out ce13">
+                  <input disabled="disabled" name="s0r2c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r3 ro1">
+                <td class="s0r3c0 text ce2">
+                  <p>
+                    <span class="t1">HOA/COA</span> (.80 / unit / month)
+                  </p>
+                </td>
+                <td class="s0r3c1 in ce7">
+                  <input id="s0r3c1" name="s0r3c1" data-value-type="float" value="0">
+                </td>
+                <td class="s0r3c2 out ce13">
+                  <input disabled="disabled" name="s0r3c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r4 ro1">
+                <td class="s0r4c0 text ce3">
+                  <p>
+                    # of Website(s)
+                  </p>
+                </td>
+                <td class="s0r4c1 in ce7">
+                  <input id="s0r4c1" name="s0r4c1" data-value-type="float" value="0">
+                </td>
+              </tr>
+              <tr class="s0r5 ro1">
+                <td class="s0r5c0 text ce3">
+                  <p>
+                    Total
+                  </p>
+                </td>
+                <td class="s0r5c1 out ce8">
+                  <input disabled="disabled" name="s0r5c1" value="0" data-value-type="float">
+                </td>
+                <td class="s0r5c2 out ce13">
+                  <input disabled="disabled" name="s0r5c2" value="0" data-value-type="currency" data-format="$0.00">
+                </td>
+                <td class="s0r5c3 text ce3"></td>
+              </tr>
+              <tr class="s0r6 ro1">
+                <td class="s0r6c0 text ce4">
+                  <p>
+                    MONTHLY FEES
+                  </p>
+                </td>
+                <td class="s0r6c1 text ce9"></td>
+                <td class="s0r6c2 text ce14"></td>
+              </tr>
+              <tr class="s0r7 ro1">
+                <td class="s0r7c0 text ce3">
+                  <p>
+                    +Adjustment
+                  </p>
+                </td>
+                <td class="s0r7c1 text"></td>
+                <td class="s0r7c2 out ce13">
+                  <input disabled="disabled" name="s0r7c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r8 ro1">
+                <td class="s0r8c0 text ce3">
+                  <p>
+                    Software Monthly Cost
+                  </p>
+                </td>
+                <td class="s0r8c1 text ce10"></td>
+                <td class="s0r8c2 out ce13">
+                  <input disabled="disabled" name="s0r8c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r9 ro1">
+                <td class="s0r9c0 text ce3">
+                  <p>
+                    Website(s) Monthly Hosting Cost
+                  </p>
+                </td>
+                <td class="s0r9c1 text"></td>
+                <td class="s0r9c2 out ce13">
+                  <input disabled="disabled" name="s0r9c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r10 ro1">
+                <td class="s0r10c0 text ce4">
+                  <p>
+                    ONE TIME FEES
+                  </p>
+                </td>
+                <td class="s0r10c1 text ce11"></td>
+                <td class="s0r10c2 text ce11"></td>
+              </tr>
+              <tr class="s0r11 ro1">
+                <td class="s0r11c0 text ce3">
+                  <p>
+                    Implmenation Fee
+                  </p>
+                </td>
+                <td class="s0r11c1 text ce12"></td>
+                <td class="s0r11c2 out ce13">
+                  <input disabled="disabled" name="s0r11c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r12 ro1">
+                <td class="s0r12c0 text ce3">
+                  <p>
+                    Website(s) Setup Fee
+                  </p>
+                </td>
+                <td class="s0r12c1 text"></td>
+                <td class="s0r12c2 out ce13">
+                  <input disabled="disabled" name="s0r12c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r13 ro1">
+                <td class="s0r13c0 text ce4">
+                  <p>
+                    YEARLY TOTALS
+                  </p>
+                </td>
+                <td class="s0r13c1 text ce11"></td>
+                <td class="s0r13c2 text ce11"></td>
+              </tr>
+              <tr class="s0r14 ro1">
+                <td class="s0r14c0 text ce3">
+                  <p>
+                    First Year (software + imp. fee)
+                  </p>
+                </td>
+                <td class="s0r14c1 text"></td>
+                <td class="s0r14c2 out ce13">
+                  <input disabled="disabled" name="s0r14c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r15 ro1">
+                <td class="s0r15c0 text ce3">
+                  <p>
+                    First Year (software + imp. fee) + Website(s)
+                  </p>
+                </td>
+                <td class="s0r15c1 text"></td>
+                <td class="s0r15c2 out ce13">
+                  <input disabled="disabled" name="s0r15c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r16 ro1">
+                <td class="s0r16c0 text ce3">
+                  <p>
+                    Second Year
+                  </p>
+                </td>
+                <td class="s0r16c1 text"></td>
+                <td class="s0r16c2 out ce15">
+                  <input disabled="disabled" name="s0r16c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r17 ro1">
+                <td class="s0r17c0 text ce3">
+                  <p>
+                    Second Year + Website
+                  </p>
+                </td>
+                <td class="s0r17c1 text"></td>
+                <td class="s0r17c2 out ce15">
+                  <input disabled="disabled" name="s0r17c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r18 ro1">
+                <td class="s0r18c0 text ce4">
+                  <p>
+                    YEARLY TOTALS (ANNUAL DISCOUNT)
+                  </p>
+                </td>
+                <td class="s0r18c1 text ce11"></td>
+                <td class="s0r18c2 text ce11"></td>
+              </tr>
+              <tr class="s0r19 ro1">
+                <td class="s0r19c0 text ce3">
+                  <p>
+                    Annual (software + imp. fee)
+                  </p>
+                </td>
+                <td class="s0r19c1 text"></td>
+                <td class="s0r19c2 out ce13">
+                  <input disabled="disabled" name="s0r19c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r20 ro1">
+                <td class="s0r20c0 text ce5">
+                  <p>
+                    Annual First Year + Website(s)
+                  </p>
+                </td>
+                <td class="s0r20c1 text"></td>
+                <td class="s0r20c2 out ce15">
+                  <input disabled="disabled" name="s0r20c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+                <td class="s0r20c3 text ce8"></td>
+              </tr>
+              <tr class="s0r21 ro1">
+                <td class="s0r21c0 text ce3">
+                  <p>
+                    Annual Second Year
+                  </p>
+                </td>
+                <td class="s0r21c1 text"></td>
+                <td class="s0r21c2 out ce15">
+                  <input disabled="disabled" name="s0r21c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r22 ro1">
+                <td class="s0r22c0 text ce5">
+                  <p>
+                    Annual Second Year + Website
+                  </p>
+                </td>
+                <td class="s0r22c1 text"></td>
+                <td class="s0r22c2 out ce15">
+                  <input disabled="disabled" name="s0r22c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+              <tr class="s0r23 ro1">
+                <td></td>
+              </tr>
+              <tr class="s0r24 ro1">
+                <td class="s0r24c0 text ce6">
+                  <p>
+                    Total Annual Discount
+                  </p>
+                </td>
+                <td class="s0r24c1 text"></td>
+                <td class="s0r24c2 out ce15">
+                  <input disabled="disabled" name="s0r24c2" value="" data-value-type="string" data-format="$0.00">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </form>
+    </div><script src="http://code.jquery.com/jquery-1.11.0.min.js" type="text/javascript">
+</script><!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeric/1.2.6/numeric.min.js" type="text/javascript">
+</script><script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js" type="text/javascript">
+</script><script src="https://cdn.jsdelivr.net/jstat/1.5.3/jstat.min.js" type="text/javascript">
+</script><script type="text/javascript">
+    jStat.jStat = jStat;
+    </script><script src="https://cdnjs.cloudflare.com/ajax/libs/formulajs/1.0.8/formula.js" type="text/javascript">
+</script><!-- Spreadsheet calculations -->
+    <script type="application/javascript">
+    (function (Formula) {
+            (function() {
+    function run_calc(){ step0();step1();step2();step3();step4()}
+    function step0() {
+    s0r1c2();s0r2c2();s0r3c2();s0r5c1();s0r9c2();s0r12c2();
+    }
+    function step1() {
+    s0r5c2();s0r11c2();
+    }
+    function step2() {
+    s0r7c2();s0r8c2();
+    }
+    function step3() {
+    s0r14c2();s0r15c2();s0r19c2();s0r20c2();
+    }
+    function step4() {
+    s0r16c2();s0r17c2();s0r21c2();s0r22c2();s0r24c2();
+    }
+    // Cells formulas
+    function s0r1c2(){ APY.set('s0r1c2',RANGE([0,1,1])*1.25) }
+    function s0r2c2(){ APY.set('s0r2c2',RANGE([0,2,1])*1.5) }
+    function s0r3c2(){ APY.set('s0r3c2',RANGE([0,3,1])*0.8) }
+    function s0r5c1(){ APY.set('s0r5c1',Formula.SUM(RANGE([0,1,1],[0,3,1]))) }
+    function s0r5c2(){ APY.set('s0r5c2',Formula.SUM(RANGE([0,1,2],[0,3,2]))) }
+    function s0r7c2(){ APY.set('s0r7c2',Formula.IF(RANGE([0,5,2])<=250,250-RANGE([0,5,2]),0)) }
+    function s0r8c2(){ APY.set('s0r8c2',Formula.IF(RANGE([0,5,2])<=250,RANGE([0,5,2])-RANGE([0,5,2])+250,RANGE([0,5,2]))) }
+    function s0r9c2(){ APY.set('s0r9c2',RANGE([0,4,1])*50) }
+    function s0r11c2(){ APY.set('s0r11c2',Formula.IF(RANGE([0,5,1])>=200,RANGE([0,5,1])*2,400)) }
+    function s0r12c2(){ APY.set('s0r12c2',Formula.IF(RANGE([0,4,1])>=1,750*(RANGE([0,4,1])-1)+2000,0)) }
+    function s0r14c2(){ APY.set('s0r14c2',((RANGE([0,8,2])*12)+RANGE([0,11,2]))) }
+    function s0r15c2(){ APY.set('s0r15c2',Formula.IF(RANGE([0,4,1])>=1,1350*(RANGE([0,4,1])-1)+2600,0)+(RANGE([0,8,2])*12+RANGE([0,11,2]))) }
+    function s0r16c2(){ APY.set('s0r16c2',RANGE([0,14,2])-RANGE([0,11,2])) }
+    function s0r17c2(){ APY.set('s0r17c2',RANGE([0,15,2])-RANGE([0,11,2])-RANGE([0,12,2])) }
+    function s0r19c2(){ APY.set('s0r19c2',(RANGE([0,8,2])*12*0.9)+RANGE([0,11,2])) }
+    function s0r20c2(){ APY.set('s0r20c2',Formula.IF(RANGE([0,4,1])>=1,1350*(RANGE([0,4,1])-1)+2600,0)+((RANGE([0,8,2])*12)*0.9+RANGE([0,11,2]))) }
+    function s0r21c2(){ APY.set('s0r21c2',RANGE([0,19,2])-RANGE([0,11,2])) }
+    function s0r22c2(){ APY.set('s0r22c2',RANGE([0,20,2])-RANGE([0,11,2])-RANGE([0,12,2])) }
+    function s0r24c2(){ APY.set('s0r24c2',RANGE([0,14,2])-RANGE([0,19,2])) }
+    var root = this;
+    var APY = root.APY = {};
+    window.onload = function () {
+        $('input, select').on('change', function () {
+            $(this).setFormattedValue();
+            run_calc();
+        });
+
+        $('input:enabled').each(function () {
+            $(this).setFormattedValue();
+        });
+        run_calc();
+    };
+
+    $.fn.setFormattedValue = function () {
+        var value = $(this).val();
+        var valueType = $(this).attr('data-value-type');
+        var valueFormat = $(this).attr('data-format');
+
+        var formattedValue = APY.formatValue(value, valueType, valueFormat);
+        this.val(formattedValue);
+    };
+
+    APY.getInput = function (value, type) {
+
+        if (typeof type === "undefined") type = "string";
+
+        if (type == "boolean") {
+            value = (value == "true");
+        } else if (value.length === 0) {
+            value = "";
+        } else if (type == "string") {
+
+            if (!isNaN(value) && isFinite(value)) {
+                value = parseFloat(value);
+            } else {
+
+            }
+
+        } else {
+            old_format = value;
+            value = numeral().unformat(value);
+        }
+        return value;
+    };
+
+    APY.set = function (output_name, value, type) {
+
+        // Set default type if necessary
+        if (typeof type === "undefined") {
+            type = (typeof value === "undefined") ? "string" : typeof value;
+        }
+
+        var element = $('[name=' + output_name + ']');
+        var formats = $(element).data('format');
+
+        element.attr('data-value-type', type);
+
+        // Format allowed for number, float and percentage
+        if ((type == 'number' || type == 'float' || type == 'percentage' || type == 'currency') &&
+            (typeof formats != "undefined")) {
+
+            var formats_array = formats.toString().split(";", 3);
+            var nb_format = formats_array.length;
+            if (value == 0 && nb_format == 3) {
+                myformat = formats_array[1];
+            } else if (value < 0) {
+                myformat = formats_array[0];
+            } else {
+                myformat = formats_array[nb_format - 1];
+            }
+
+            element.val(numeral(value).format(myformat));
+
+        } else {
+            element.val(value);
+        }
+    };
+
+    APY.formatValue = function (value, type, formats) {
+        var formattedValue = value;
+
+        if ((type == 'number' || type == 'float' || type == 'percentage' || type == 'currency') &&
+            (typeof formats != "undefined")) {
+
+            var formats_array = formats.toString().split(";", 3);
+            var nb_format = formats_array.length;
+            if (value == 0 && nb_format == 3) {
+                myformat = formats_array[1];
+            } else if (value < 0) {
+                myformat = formats_array[0];
+            } else {
+                myformat = formats_array[nb_format - 1];
+            }
+            formattedValue = numeral(value).format(myformat);
+        }
+
+        return formattedValue;
+    };
+
+    window.RANGE = function () {
+        if (arguments.length == 1) {
+            var value = null;
+            var cell_ref = 's' + arguments[0][0] + 'r' + arguments[0][1] + 'c' + arguments[0][2];
+            var item = $('[name=' + cell_ref + ']');
+
+            if (item.length > 0) {
+                value = APY.getInput(item.val(), item.attr('data-value-type'));
+            }
+
+            return value;
+
+        } else if (arguments.length == 2) {
+            var head = arguments[0];
+            var tail = arguments[1];
+            var values = [];
+
+            for (var i = 0; i <= (tail[1] - head[1]); i++) {
+                var row = [];
+                for (var j = 0; j <= tail[2] - head[2]; j++) {
+                    cell_ref = 's' + head[0] + 'r' + (head[1] + i) + 'c' + (head[2] + j);
+
+                    var item = $('[name=' + cell_ref + ']');
+
+                    if (item.length > 0) {
+                        row.push(APY.getInput(item.val(), item.attr('data-value-type')));
+                    } else {
+                        row.push(null);
+                    }
+                }
+                values.push(row);
+            }
+            return values;
+        }
+    };
+
+    }).call();
+
+        })(formulajs);
+    </script><script type="text/javascript">
+$(document).ready(function () {
+        $(".tabs-list a").click(function (event) {
+
+            event.preventDefault();
+            $(this).parent().addClass("active");
+            $(this).parent().siblings().removeClass("active");
+
+            var tab = $(this).attr("href");
+            $(".tab-content").not(tab).css("display", "none");
+            $(tab).fadeIn();
+        });
+    });
+    </script>
+  </body>
+</html>
